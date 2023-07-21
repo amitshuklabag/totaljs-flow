@@ -1,0 +1,35 @@
+ports:
+  - protocol: "HTTPS"
+    targetProtocol: "HTTP"
+    listeningPort: "443"
+    targetPort: "6433"
+    targetIP: "172.17.0.1"
+    public: true
+    path: "/"
+    isAuth: false
+environments:
+  - key: "ADMIN_PASSWORD"
+    value: "ramdom_password"
+
+config:
+  runTime: "dockerCompose"
+  version: ""
+  framework: ""
+  buildCommand: "docker-compose build"
+  buildDir: "/"
+  runCommand: "docker-compose up -d"
+  icon: ""
+  screenshot: "flow.jpg"
+lifeCycleConfig:
+  preInstallCommand: "./scripts/preInstall.sh"
+  postInstallCommand: "./scripts/postInstall.sh"
+  preBackupCommand: "./scripts/preBackup.sh"
+  postBackupCommand: "./scripts/postBackup.sh"
+  preRestoreCommand: "./scripts/preRestore.sh"
+  postRestoreCommand: "./scripts/postRestore.sh"
+  postDeployCommand: "./scripts/postDeploy.sh"
+webUI:
+  - url: "https://[CI_CD_DOMAIN]"
+    label: "Totaljs/Flow Admin"
+    login: "root"
+    password: "[ADMIN_PASSWORD]"

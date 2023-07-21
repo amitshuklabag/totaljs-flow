@@ -1,0 +1,12 @@
+version: "3"
+
+services:
+  flow:
+    image: totalplatform/flow:latest
+    restart: always
+    ports:
+      - 172.17.0.1:6433:8000
+    volumes:
+      - ./flowstream:/www/.src/flowstream/
+      - ./databases:/www/.src/databases/
+      - ./private:/www/.src/private/
